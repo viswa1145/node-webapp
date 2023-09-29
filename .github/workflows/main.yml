@@ -18,8 +18,11 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.PASSWORD }}
  
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag viswanatha/my-github-action-app:${{ github.sha }}
-      
-    - name: Docker Push
-      run: docker push viswanatha/my-github-action-app:${{ github.sha }}
+    - name: Build and push Docker image to Docker Hub
+      uses: docker/build-push-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        registry: docker.io
+        image: viswanatha/my-github-action-app:latest
+
