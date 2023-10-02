@@ -18,8 +18,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 -t viswanatha/my-github-action-app:latest .
+          docker  build -t viswanatha/my-github-action-app:latest .
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.PASSWORD }}
